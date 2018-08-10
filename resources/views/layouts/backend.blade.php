@@ -28,7 +28,7 @@
 
     <!-- CkEditor JS -->
     <link rel="stylesheet" href="{{url('public/ckeditor/content.css')}}">
-    <script src="{{ url('public/ckeditor/ckeditor.js') }}"></script>
+
 
 </head>
 
@@ -85,7 +85,7 @@
                     <h5 class="centered"></h5>
                 </li>
                 <li class="sub-menu">
-                    <a class="@yield('activeDashboard')" href="">
+                    <a class="@yield('activeDashboard')" href="{{route('admin')}}">
                         <i class="fa fa-dashboard"></i> <span>Dashboard</span>
                     </a>
                 </li>
@@ -100,7 +100,7 @@
                     </a>
                 </li>
                 <li class="sub-menu">
-                    <a class="@yield('activeUser')" href="">
+                    <a class="@yield('activeUser')" href="{{route('users')}}">
                         <i class="fa fa-user"></i> <span>Users</span>
                     </a>
                 </li>
@@ -197,7 +197,7 @@
             },
             legend: [
                 {type: "text", label: "Special event", badge: "00"},
-                {type: "block", label: "Regular event",}
+                {type: "block", label: "Regular event"}
             ]
         });
     });
@@ -209,7 +209,7 @@
 </script>
 <script type="text/javascript" src="{{ url('public/jasny/jasny-bootstrap.min.js') }}"></script>
 <script src="{{ url('public/backend/js/common-scripts.js') }}"></script>
-
+<script src="{{ url('public/ckeditor/ckeditor.js') }}"></script>
 <script src="{{ url('public/backend/js/backend-custom.js') }}"></script>
 
 </body>

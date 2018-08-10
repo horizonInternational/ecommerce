@@ -7,6 +7,7 @@ $(document).ready(function () {
 
 });
 
+
 CKEDITOR.replace('description');
 
 $("#profile-img").change(function () {
@@ -23,5 +24,13 @@ function readURL(input) {
         reader.readAsDataURL(input.files[0]);
     }
 }
+
+
+
+window.setTimeout(function () {
+    $(".alert").fadeTo(500, 0).slideUp(500, function () {
+        $(this).remove();
+    });
+}, 2000);
 
 

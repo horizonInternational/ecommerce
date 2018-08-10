@@ -70,7 +70,7 @@
                                         </th>
                                         <th>&nbsp;</th>
                                         <th>
-                                            <form action="{{route('deleteBanner')}}" method="post" onsubmit=" return ConfirmDelete()">
+                                            <form action="{{route('destroyBanner')}}" method="post" onsubmit=" return ConfirmDelete()">
                                                 {{csrf_field()}}
                                                 <input type="hidden" name="id" value="{{$key->banners_id}}">
                                                 <button type="submit" class="btn btn-danger btn-xs">
