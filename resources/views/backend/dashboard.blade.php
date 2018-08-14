@@ -16,42 +16,42 @@
                     </button>
                 </a>
                 &nbsp;&nbsp;
-                <a href="blog">
+                <a href="{{route('blogs')}}">
                     <button class="btn btn-default">
                         <img src="{{ url('public/img/icon/blog-icon.png') }}" height="100px" width="163px">
                     </button>
                 </a>
                 &nbsp;&nbsp;
-                <a href="country">
-                    <button class="btn btn-default">
-                        <img src="{{ url('public/img/icon/countries-icon.png') }}" height="100px" width="163px">
-                    </button></a>
+                {{--<a href="{{}}">--}}
+                    {{--<button class="btn btn-default">--}}
+                        {{--<img src="{{ url('public/img/icon/countries-icon.png') }}" height="100px" width="163px">--}}
+                    {{--</button></a>--}}
                 &nbsp;&nbsp;
-                <a href="feedback">
+                <a href="{{route('feedbacks')}}">
                     <button class="btn btn-default">
                         <img src="{{ url('public/img/icon/feedback-icon.png') }}" height="100px" width="163px">
                     </button>
                 </a>
 
-                <a href="gallery">
+                <a href="{{route('galleries')}}">
                     <button class="btn btn-default">
                         <img src="{{ url('public/img/icon/gallery-icon.png') }}" height="100px" width="163px">
                     </button>
                 </a>
                 &nbsp;&nbsp;
-                <a href="team">
+                <a href="{{route('teams')}}">
                     <button class="btn btn-default">
                         <img src="{{ url('public/img/icon/team-icon.png') }}" height="100px" width="163px">
                     </button>
                 </a>
                 &nbsp;&nbsp;
-                <a href="testimonial">
+                <a href="{{route('testimonials')}}">
                     <button class="btn btn-default">
                         <img src="{{ url('public/img/icon/testimonial-icon.png') }}" height="100px" width="163px">
                     </button>
                 </a>
                 &nbsp;&nbsp;
-                <a href="whyus">
+                <a href="{{route('whyus')}}">
                     <button class="btn btn-default">
                         <img src="{{ url('public/img/icon/whyus-icon.png') }}" height="100px" width="163px">
                     </button>

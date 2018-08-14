@@ -26,7 +26,7 @@
     <!-- himg CSS -->
     <link rel="stylesheet" href="{{ url('public/css/animation.css') }}" />
 
-    <!-- CkEditor JS -->
+    <!-- CkEditor Css -->
     <link rel="stylesheet" href="{{url('public/ckeditor/content.css')}}">
 
 
@@ -90,7 +90,7 @@
                     </a>
                 </li>
                 <li class="sub-menu">
-                    <a class="@yield('activeMenu')" href="">
+                    <a class="@yield('activeMenu')" href="{{route('menus')}}">
                         <i class="fa fa-bars"></i> <span>Menu</span>
                     </a>
                 </li>
@@ -102,6 +102,11 @@
                 <li class="sub-menu">
                     <a class="@yield('activeUser')" href="{{route('users')}}">
                         <i class="fa fa-user"></i> <span>Users</span>
+                    </a>
+                </li>
+                <li class="sub-menu">
+                    <a class="@yield('activeBustype')" href="{{route('bustypes')}}">
+                        <i class="fa fa-car"></i> <span>Bus Types</span>
                     </a>
                 </li>
                 <!-- <li class="sub-menu">

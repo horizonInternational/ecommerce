@@ -208,6 +208,25 @@ Route::group(['namespace'=>'Backend','prefix'=>'admin'],function (){
 
 
     });
+
+    Route::group(['prefix' => 'bustypes'], function () {
+
+        Route::any('/', 'BustypesController@index')->name('bustypes');
+
+        Route::any('/create', 'BustypesController@create')->name('createBustype');
+
+        Route::any('/store', 'BustypesController@store')->name('storeBustype');
+
+        Route::any('/show/{id?}', 'BustypesController@show')->name('showBustype');
+
+        Route::any('/edit/{id?}', 'BustypesController@edit')->name('editBustype');
+
+        Route::any('/update', 'BustypesController@update')->name('updateBustype');
+
+        Route::any('/delete', 'BustypesController@destroy')->name('destroyBustype');
+
+
+    });
 });
 
 

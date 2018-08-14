@@ -186,7 +186,6 @@ class UsersController extends Controller
             return redirect()->intended('admin');//gives /admin in route
         }
         return redirect()->back()->with('error', 'Invalid username and password');
-
     }
 
     public function logout()
