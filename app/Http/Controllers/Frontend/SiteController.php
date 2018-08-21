@@ -39,18 +39,16 @@ class SiteController extends Controller
         if (!isset($request->from) && !isset($request->to)) {
             return redirect()->back();
         }
-
         //for checkbox to be selected incase filter appllied
         $bustype = isset($request->bustype)?$request->bustype:'';
-        $arrival_time = isset($request->arrival_time)?$request->arrival_time:'';
+        $shift = isset($request->shift)?$request->shift:'';
         $price = isset($request->price)?$request->price:'';
 
         //catching data from user input to display search routes
         $to = $request->to;
         $from = $request->from;
         $route = $from . "-" . $to;
-        $departure_date = $request->departure_date;
-        echo $departure_date;die;
+        $departure_date = isset($request->departure_date)?$request->departure_date:date('d-m-Y');
         $arrival_date = $request->arrival_date;
         $seat = $request->seat;
         $results = DB::table('schedules')
@@ -60,22 +58,21 @@ class SiteController extends Controller
             ->select('schedules.*', 'buses.*', 'routes.*', 'buses.title as bustitle','bustypes.title as bustypes_title')
             ->where([
                 ['routes.title', 'LIKE', '%' . $route . '%'],
-                ])
-            ->whereDate('schedules.departure_date','>',$departure_date)
+            ])
             ->get();
         $count = count($results, COUNT_RECURSIVE);
         $bustypes = Bustypes::all();
-        return view('frontend.searches', compact('results', 'from', 'to', 'count', 'bustypes', 'departure_date', 'arrival_date', 'seat','bustype','arrival_time','price'));
+        return view('frontend.searches', compact('results', 'from', 'to', 'count', 'bustypes', 'departure_date', 'arrival_date', 'seat','bustype','shift','price'));
     }
 
     public function searchFilter(Request $request)
     {
-        if (!isset($request->arrival_time) && !isset($request->bustype) && !isset($request->price)) {
+        if (!isset($request->shift) && !isset($request->bustype) && !isset($request->price)) {
             return redirect()->route('search');
         }
         //for checkbox to be selected incase filter appllied
         $bustype = isset($request->bustype)?$request->bustype:'';
-        $arrival_time = isset($request->arrival_time)?$request->arrival_time:'';
+        $shift = isset($request->shift)?$request->shift:'';
         $price = isset($request->price)?$request->price:'';
 
         //catching form data of hidden inputs
@@ -83,100 +80,97 @@ class SiteController extends Controller
         $to = $request->to;
         $route = $from . "-" . $to;
         $departure_date = $request->departure_date;
-        $arrival_date = $request->arrival_date;
+        $arrival_date = $request->shift;
         $seat = $request->seat;
 
-        if ($arrival_time == 'before') {
-            $op = '<=';
-        } else {
-            $op = '>=';
-        }
-
-        if (isset($request->bustype) && !isset($request->arrival_time) && !isset($request->price) ) {
-            $results = DB::table('schedules')
-                ->join('buses', 'schedules.buses_id', '=', 'buses.buses_id')
-                ->join('routes', 'buses.routes_id', '=', 'routes.routes_id')
-                ->join('bustypes', 'buses.bustypes_id', '=', 'bustypes.bustypes_id')
-                ->select('schedules.*', 'buses.*', 'routes.*', 'bustypes.title as bustitle')
-                ->where([
-                    ['bustypes.bustypes_id', $bustype],
-                    ['routes.title', 'LIKE', '%' . $route . '%']
-                ])
-                ->get();
-        }
-        if (isset($request->price) && !isset($request->arrival_time) && !isset($request->bustype)) {
-            $results = DB::table('schedules')
-                ->join('buses', 'schedules.buses_id', '=', 'buses.buses_id')
-                ->join('routes', 'buses.routes_id', '=', 'routes.routes_id')
-                ->join('bustypes', 'buses.bustypes_id', '=', 'bustypes.bustypes_id')
-                ->select('schedules.*', 'buses.*', 'routes.*', 'bustypes.title as bustitle')
-                ->where([
-                    ['routes.title', 'LIKE', '%' . $route . '%']
-                ])
-                ->orderBy('schedules.ticket_price',$price)
-                ->get();
-        }
-        if (!isset($request->bustype) && isset($request->arrival_time) && !isset($request->price)) {
-            $results = DB::table('schedules')
-                ->join('buses', 'schedules.buses_id', '=', 'buses.buses_id')
-                ->join('routes', 'buses.routes_id', '=', 'routes.routes_id')
-                ->join('bustypes', 'buses.bustypes_id', '=', 'bustypes.bustypes_id')
-                ->select('schedules.*', 'buses.*', 'routes.*', 'bustypes.title as bustitle')
-                ->where([
-                    ['routes.title', 'LIKE', '%' . $route . '%'],
-                    ['schedules.departure_time', $op, '10:00']
-            ])
-                ->get();
-
-        }
-        if (isset($request->arrival_time) && isset($request->bustype) && !isset($request->price)) {
-            $results = DB::table('schedules')
-                ->join('buses', 'schedules.buses_id', '=', 'buses.buses_id')
-                ->join('routes', 'buses.routes_id', '=', 'routes.routes_id')
-                ->join('bustypes', 'buses.bustypes_id', '=', 'bustypes.bustypes_id')
-                ->select('schedules.*', 'buses.*', 'routes.*', 'bustypes.title as bustitle')
-                ->where([
-                    ['routes.title', 'LIKE', '%' . $route . '%'],
-                    ['bustypes.bustypes_id', $bustype],
-                    ['schedules.departure_time', $op, '10:00']
-                ])
-                ->get();
-        }
-        if (!isset($request->arrival_time) && isset($request->bustype) && isset($request->price)) {
-            $results = DB::table('schedules')
-                ->join('buses', 'schedules.buses_id', '=', 'buses.buses_id')
-                ->join('routes', 'buses.routes_id', '=', 'routes.routes_id')
-                ->join('bustypes', 'buses.bustypes_id', '=', 'bustypes.bustypes_id')
-                ->select('schedules.*', 'buses.*', 'routes.*', 'bustypes.title as bustitle')
-                ->where([
-                    ['routes.title', 'LIKE', '%' . $route . '%'],
-                    ['bustypes.bustypes_id', $bustype],
-                ])
-                ->orderBy('schedules.ticket_price',$price)
-                ->get();
-
-        }
-        if (isset($request->arrival_time) && !isset($request->bustype) && isset($request->price)) {
-            $results = DB::table('schedules')
-                ->join('buses', 'schedules.buses_id', '=', 'buses.buses_id')
-                ->join('routes', 'buses.routes_id', '=', 'routes.routes_id')
-                ->join('bustypes', 'buses.bustypes_id', '=', 'bustypes.bustypes_id')
-                ->select('schedules.*', 'buses.*', 'routes.*', 'bustypes.title as bustitle')
-                ->where([
-                    ['routes.title', 'LIKE', '%' . $route . '%'],
-                    ['schedules.departure_time', $op, '10:00']
-                ])
-                ->orderBy('schedules.ticket_price',$price)
-                ->get();
-        }
-        if (isset($request->arrival_time) && isset($request->bustype) && isset($request->price)) {
+        if (isset($request->bustype) && !isset($request->shift) && !isset($request->price) ) {
             $results = DB::table('schedules')
                 ->join('buses', 'schedules.buses_id', '=', 'buses.buses_id')
                 ->join('routes', 'buses.routes_id', '=', 'routes.routes_id')
                 ->join('bustypes', 'buses.bustypes_id', '=', 'bustypes.bustypes_id')
                 ->select('schedules.*', 'buses.*', 'routes.*', 'buses.title as bustitle','bustypes.title as bustypes_title')
                 ->where([
+                    ['bustypes.bustypes_id', $bustype],
+                    ['routes.title', 'LIKE', '%' . $route . '%']
+                ])
+                ->get();
+        }
+        if (!isset($request->bustype) && !isset($request->shift) && isset($request->price)) {
+            $results = DB::table('schedules')
+                ->join('buses', 'schedules.buses_id', '=', 'buses.buses_id')
+                ->join('routes', 'buses.routes_id', '=', 'routes.routes_id')
+                ->join('bustypes', 'buses.bustypes_id', '=', 'bustypes.bustypes_id')
+                ->select('schedules.*', 'buses.*', 'routes.*', 'buses.title as bustitle','bustypes.title as bustypes_title')
+                ->where([
+                    ['routes.title', 'LIKE', '%' . $route . '%']
+                ])
+                ->orderBy('schedules.ticket_price',$price)
+                ->get();
+        }
+        if (!isset($request->bustype) && isset($request->shift) && !isset($request->price)) {
+            $results = DB::table('schedules')
+                ->join('buses', 'schedules.buses_id', '=', 'buses.buses_id')
+                ->join('routes', 'buses.routes_id', '=', 'routes.routes_id')
+                ->join('bustypes', 'buses.bustypes_id', '=', 'bustypes.bustypes_id')
+                ->select('schedules.*', 'buses.*', 'routes.*', 'buses.title as bustitle','bustypes.title as bustypes_title')
+                ->where([
+                    ['routes.title', 'LIKE', '%' . $route . '%'],
+                    ['schedules.shift', $shift]
+            ])
+                ->get();
+        }
+
+        if (isset($request->shift) && isset($request->bustype) && !isset($request->price)) {
+            $results = DB::table('schedules')
+                ->join('buses', 'schedules.buses_id', '=', 'buses.buses_id')
+                ->join('routes', 'buses.routes_id', '=', 'routes.routes_id')
+                ->join('bustypes', 'buses.bustypes_id', '=', 'bustypes.bustypes_id')
+                ->select('schedules.*', 'buses.*', 'routes.*', 'buses.title as bustitle','bustypes.title as bustypes_title')
+                ->where([
+                    ['routes.title', 'LIKE', '%' . $route . '%'],
+                    ['bustypes.bustypes_id', $bustype],
+                    ['schedules.shift',$shift]
+                ])
+                ->get();
+        }
+        if (!isset($request->shift) && isset($request->bustype) && isset($request->price)) {
+            $results = DB::table('schedules')
+                ->join('buses', 'schedules.buses_id', '=', 'buses.buses_id')
+                ->join('routes', 'buses.routes_id', '=', 'routes.routes_id')
+                ->join('bustypes', 'buses.bustypes_id', '=', 'bustypes.bustypes_id')
+                ->select('schedules.*', 'buses.*', 'routes.*', 'buses.title as bustitle','bustypes.title as bustypes_title')
+                ->where([
+                    ['routes.title', 'LIKE', '%' . $route . '%'],
+                    ['bustypes.bustypes_id', $bustype],
+                ])
+                ->orderBy('schedules.ticket_price',$price)
+                ->get();
+
+        }
+        if (isset($request->shift) && !isset($request->bustype) && isset($request->price)) {
+            $results = DB::table('schedules')
+                ->join('buses', 'schedules.buses_id', '=', 'buses.buses_id')
+                ->join('routes', 'buses.routes_id', '=', 'routes.routes_id')
+                ->join('bustypes', 'buses.bustypes_id', '=', 'bustypes.bustypes_id')
+                ->select('schedules.*', 'buses.*', 'routes.*', 'buses.title as bustitle','bustypes.title as bustypes_title')
+                ->where([
+                    ['routes.title', 'LIKE', '%' . $route . '%'],
+                    ['schedules.shift',$shift]
+                ])
+                ->orderBy('schedules.ticket_price',$price)
+                ->get();
+        }
+
+        if (isset($request->shift) && isset($request->bustype) && isset($request->price)) {
+            $results = DB::table('schedules')
+                ->join('buses', 'schedules.buses_id', '=', 'buses.buses_id')
+                ->join('routes', 'buses.routes_id', '=', 'routes.routes_id')
+                ->join('bustypes', 'buses.bustypes_id', '=', 'bustypes.bustypes_id')
+                ->select('schedules.*', 'buses.*', 'routes.*', 'buses.title as bustitle','bustypes.title as bustypes_title')
+                ->where([
+                    ['routes.title', 'LIKE', '%' . $route . '%'],
                     ['buses.bustypes_id',$bustype],
+                    ['schedules.shift',$shift]
                 ])
                 ->orderBy('schedules.ticket_price',$price)
                 ->get();
@@ -184,7 +178,7 @@ class SiteController extends Controller
 
         $count = count($results, COUNT_RECURSIVE);
         $bustypes = Bustypes::all();
-        return view('frontend.searches', compact('results', 'from', 'to', 'count', 'bustypes', 'departure_date', 'arrival_date', 'seat','bustype','arrival_time','price'));
+        return view('frontend.searches', compact('results', 'from', 'to', 'count', 'bustypes', 'departure_date', 'arrival_date', 'seat','bustype','shift','price'));
     }
 
     public function profile()

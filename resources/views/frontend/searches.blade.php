@@ -11,7 +11,7 @@
                 </div>
                 <div class="col-md-9">
                     <span class="h3">{{ucfirst($from).' to '.ucfirst($to)}}</span>
-                    <p>{{$count}} Buses Found for you</p>
+                    <p>There are {{$count}} buses for this route at the moment </p>
                 </div>
             </div>
         </div>
@@ -43,9 +43,9 @@
                     <div class="panel search_text">
                         <div class="row">
                             <div class="col-md-12 ">
-                                <li>Departure</li>
-                                <input type="checkbox" name="arrival_time" value="before" class="chh" @if($arrival_time=='before') checked @endif> Before 1:00 pm<br>
-                                <input type="checkbox" name="arrival_time" value="after" class="chh"  @if($arrival_time=='after') checked @endif> After 1:00 pm<br>
+                                <li>Choose shift</li>
+                                <input type="checkbox" name="shift" value="day" class="chh" @if($shift=='day') checked @endif> Day<br>
+                                <input type="checkbox" name="shift" value="night" class="chh"  @if($shift=='night') checked @endif> Night<br>
                             </div>
                         </div>
                     </div>
@@ -112,7 +112,8 @@
                                         <div class="panel-title">
                                             {{$result->bustitle}}
                                         </div>
-                                        <p>{{$result->bustypes_title}}</p>
+                                        <p><span class="text-danger">{{$result->bustypes_title}}</span></p>
+                                        <p><span class="text-primary">{{ucfirst($result->shift)}} </span></p>
                                     </div>
                                     <div class="col-md-2 col-xs-2">
                                         <div class="panel-title">

@@ -30,12 +30,12 @@
                         <div class="col-md-9">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <input type="date" class="form-control" name="departure_date"
+                                    <input type="text" class="form-control" name="departure_date"
                                            value="{{$schedule->departure_date}}">
                                     <small class="text text-danger">{{$errors->first('departure_date')}}</small>
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="time" class="form-control" name="departure_time"
+                                    <input type="text" class="form-control" name="departure_time"
                                            value="{{$schedule->departure_time}}">
                                     <small class="text text-danger">{{$errors->first('departure_time')}}</small>
                                 </div>
@@ -48,12 +48,12 @@
                         <div class="col-md-9">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <input type="date" name="arrival_date" class="form-control"
+                                    <input type="text" name="arrival_date" class="form-control"
                                            value="{{$schedule->arrival_date}}">
                                     <small class="text text-danger">{{$errors->first('arrival_date')}}</small>
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="time" name="arrival_time" class="form-control"
+                                    <input type="text" name="arrival_time" class="form-control"
                                            value="{{$schedule->arrival_time}}">
                                     <small class="text text-danger">{{$errors->first('arrival_time')}}</small>
 

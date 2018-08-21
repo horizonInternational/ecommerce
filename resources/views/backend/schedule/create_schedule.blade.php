@@ -29,33 +29,33 @@
                         <div class="col-md-9">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <input type="date" class="form-control" name="departure_date"
-                                           placeholder=" Departure Date " required>
+                                    <input type="text" class="form-control" name="departure_date"
+                                           placeholder=" Departure Date (dd-mm-yy) " required>
                                     <small class="text text-danger">{{$errors->first('departure_date')}}</small>
 
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="time" class="form-control" name="departure_time"
-                                           placeholder=" HH-MM-SS" required>
+                                    <input type="text" class="form-control" name="departure_time"
+                                           placeholder="00:00 am" required>
                                     <small class="text text-danger">{{$errors->first('departure_time')}}</small>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-12">&nbsp;</div>
+                    <div class="col-md-12">&nbsp</div>
                     <div class="rows ">
                         <div class="col-md-3"><strong>Arrival Date : *</strong></div>
                         <div class="col-md-9">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <input type="date" name="arrival_date" class="form-control"
-                                           placeholder="Arrival Date" required>
+                                    <input type="text" name="arrival_date" class="form-control"
+                                           placeholder="Arrival Date (dd-mm-yy)" required>
                                     <small class="text text-danger">{{$errors->first('arrival_date')}}</small>
 
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="time" name="arrival_time" class="form-control"
-                                           placeholder="Arrival Time" required>
+                                    <input type="text" name="arrival_time" class="form-control"
+                                           placeholder="00:00 am" required>
                                     <small class="text text-danger">{{$errors->first('arrival_time')}}</small>
                                 </div>
                             </div>

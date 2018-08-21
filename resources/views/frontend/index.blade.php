@@ -21,10 +21,10 @@
                     <div class="col-xs-12 col-sm-3" id="rt_date" style="display: none;">
                         <div class="row ">
                             <div class="col-md-6 col-sm-3" >
-                                <input type="text" class="form-control datepicker"  name="departure_date" id="date" placeholder="Depart">
+                                <input type="text" class="form-control datepicker"  name="departure_date1" id="date" placeholder="Depart">
                             </div>
                             <div class="col-md-6 col-sm-3">
-                                <input type="text" class="form-control datepicker" name="arrival_date" id="date" placeholder="Return">
+                                <input type="text" class="form-control datepicker" name="arrival_date1" id="date" placeholder="Return">
                             </div>
                         </div>
                     </div>
