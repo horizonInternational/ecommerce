@@ -74,7 +74,7 @@
     *********************************************************************************************************************************************************** -->
     <!--sidebar start-->
     <aside>
-        <div id="sidebar" class="nav-collapse">
+        <div id="sidebar" class="nav-collapse" style="height:600px;overflow-x: hidden;overflow-y: scroll;">
 
             <!-- sidebar menu start-->
             <ul class="sidebar-menu" id="nav-accordion">
@@ -94,21 +94,57 @@
                         <i class="fa fa-bars"></i> <span>Menu</span>
                     </a>
                 </li>
-                <li class="sub-menu">
-                    <a class="@yield('activePages')" href="">
-                        <i class="fa fa-file"></i> <span>Pages</span>
-                    </a>
-                </li>
-                <li class="sub-menu">
-                    <a class="@yield('activeUser')" href="{{route('users')}}">
-                        <i class="fa fa-user"></i> <span>Users</span>
-                    </a>
-                </li>
+                {{--<li class="sub-menu">--}}
+                    {{--<a class="@yield('activePages')" href="">--}}
+                        {{--<i class="fa fa-file"></i> <span>Pages</span>--}}
+                    {{--</a>--}}
+                {{--</li>--}}
                 <li class="sub-menu">
                     <a class="@yield('activeBustype')" href="{{route('bustypes')}}">
-                        <i class="fa fa-car"></i> <span>Bus Types</span>
+                        <i class="fa fa-tasks"></i> <span>Bus Types</span>
                     </a>
                 </li>
+                <li class="sub-menu">
+                    <a class="@yield('activeRoute')" href="{{route('routes')}}">
+                        <i class="fa fa-road"></i> <span>Routes</span>
+                    </a>
+                </li>
+                <li class="sub-menu">
+                    <a class="@yield('activeBus')" href="{{route('buses')}}">
+                        <i class="fa fa-car"></i> <span>Buses</span>
+                    </a>
+                </li>
+                <li class="sub-menu">
+                    <a class="@yield('activeSchedule')" href="{{route('schedules')}}">
+                        <i class="fa fa-calendar"></i> <span>Schedules</span>
+                    </a>
+                </li> <li class="sub-menu">
+                    <a class="@yield('activeBooking')" href="{{route('bookings')}}">
+                        <i class="fa fa-envelope"></i> <span>Bookings</span>
+                    </a>
+                </li>
+                <li class="sub-menu">
+                    <a class="@yield('activeTraveller')" href="{{route('travellers')}}">
+                        <i class="fa fa-users"></i> <span>Travellers</span>
+                    </a>
+                </li>
+                <li class="sub-menu">
+                    <a class="@yield('activeVendor')" href="{{route('vendors')}}">
+                        <i class="fa fa-tags"></i> <span>Vendors</span>
+                    </a>
+                </li>
+                <li class="sub-menu">
+                    <a class="@yield('activeGuest')" href="{{route('guests')}}">
+                        <i class="fa fa-user"></i> <span>Guests</span>
+                    </a>
+                </li>
+
+                <li class="sub-menu">
+                    <a class="@yield('activeAdmin')" href="{{route('admins')}}">
+                        <i class="fa fa-inbox"></i> <span>Admins</span>
+                    </a>
+                </li>
+
                 <!-- <li class="sub-menu">
                     <a href="javascript:;">
                         <i class="fa fa-desktop"></i> <span>My Profile</span>

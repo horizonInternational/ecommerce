@@ -34,13 +34,13 @@
                             </div>
                         </div>
                         <div class="col-md-9">
-                            <div class="col-md-3"><strong>Name : *</strong></div>
-                            <div class="col-md-9">
-                                <input type="text" class="form-control" name="name" placeholder="Name" required>
-                                <small class="text text-danger">{{$errors->first('name')}}</small>
+                            {{--<div class="col-md-3"><strong>Name : *</strong></div>--}}
+                            {{--<div class="col-md-9">--}}
+                                {{--<input type="text" class="form-control" name="name" placeholder="Name" required>--}}
+                                {{--<small class="text text-danger">{{$errors->first('name')}}</small>--}}
 
-                            </div>
-                            <div class="col-md-12">&nbsp;</div>
+                            {{--</div>--}}
+                            {{--<div class="col-md-12">&nbsp;</div>--}}
                             <div class="col-md-3"><strong>Email : *</strong></div>
                             <div class="col-md-9">
                                 <input type="text" class="form-control" name="email" placeholder="Email" required>
@@ -48,13 +48,13 @@
 
                             </div>
                             <div class="col-md-12">&nbsp;&nbsp;</div>
-                            <div class="col-md-3"><strong>Username : *</strong></div>
-                            <div class="col-md-9">
-                                <input type="text" class="form-control" name="username" placeholder="Username">
-                                <small class="text text-danger">{{$errors->first('username')}}</small>
+                            {{--<div class="col-md-3"><strong>Username : *</strong></div>--}}
+                            {{--<div class="col-md-9">--}}
+                                {{--<input type="text" class="form-control" name="username" placeholder="Username">--}}
+                                {{--<small class="text text-danger">{{$errors->first('username')}}</small>--}}
 
-                            </div>
-                            <div class="col-md-12">&nbsp;</div>
+                            {{--</div>--}}
+                            {{--<div class="col-md-12">&nbsp;</div>--}}
                             <div class="col-md-3"><strong>User Type</strong></div>
                             <div class="col-md-9">
                                 <input type="radio" name="user_type" value="admin"> Admin&ensp;

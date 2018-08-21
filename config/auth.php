@@ -45,6 +45,24 @@ return [
             'driver' => 'token',
             'provider' => 'users',
         ],
+        //trying to make multi login with multiple table
+//        'traveller' => [
+//            'driver' => 'session',
+//            'provider' => 'travellers',
+//        ],
+//        'traveller-api' => [
+//            'driver' => 'token',
+//            'provider' => 'travellers',
+//        ],
+//
+//        'vendor' => [
+//            'driver' => 'session',
+//            'provider' => 'vendors',
+//        ],
+//        'vendor-api' => [
+//            'driver' => 'token',
+//            'provider' => 'vendors',
+//        ],
     ],
 
     /*
@@ -67,8 +85,18 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => App\User::class,
+            'model' => App\Users::class,
         ],
+        //trying to make multi login with multiple table
+//        'travellers' => [
+//            'driver' => 'eloquent',
+//            'model' => App\Travellers::class,
+//        ],
+//
+//        'vendors' => [
+//            'driver' => 'eloquent',
+//            'model' => App\Vendors::class,
+//        ],
 
         // 'users' => [
         //     'driver' => 'database',

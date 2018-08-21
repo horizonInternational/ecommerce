@@ -33,18 +33,17 @@ class UsersController extends Controller
         $user= new Users();
         $this->validate($request,
             [
-                'name' => 'required|min:3',
-                'username' => 'required|min:3|unique:users,username',
+                //'name' => 'required|min:3',
+               // 'username' => 'required|min:3|unique:users,username',
                 'email' => 'required|min:6|unique:users,email',
                 'password' => 'required|min:4|confirmed',
                 'user_type' => 'required',
-
-                [
-                    'username.required' => 'Username cannot be empty'
-                ]
+//                [
+//                    'username.required' => 'Username cannot be empty'
+//                ]
             ]);
-        $data['name'] = $request->name;
-        $data['username'] = $request->username;
+       // $data['name'] = $request->name;
+        //$data['username'] = $request->username;
         $data['email'] = $request->email;
         $data['password'] = bcrypt($request->password);
         $data['user_type'] = $request->user_type;
@@ -106,22 +105,17 @@ class UsersController extends Controller
         $userId=$request->id;
         $this->validate($request,
             [
-                'name' => 'required|min:3',
-                'username' => 'required|min:3', [
-                Rule::unique('users', 'username')->ignore($userId)
-            ],
-                'email' => 'required|min:6', [
+                'email' => 'required', [
                 Rule::unique('users', 'email')->ignore($userId)
             ],
                 'user_type' => 'required',
-                'upload' => 'mimes:jpg,gif,png,jpeg',
+                'image' => 'mimes:jpg,gif,png,jpeg',
                 [
-                    'username.required' => 'Username cannot be empty',
                     'email.required' => 'Email cannot be empty'
                 ]
             ]);
-        $data['name'] = $request->name;
-        $data['username'] = $request->username;
+       // $data['name'] = $request->name;
+        //$data['username'] = $request->username;
         $data['email'] = $request->email;
         $data['user_type'] = $request->user_type;
 
@@ -178,12 +172,13 @@ class UsersController extends Controller
         if ($request->isMethod('get')) {
             return view('backend.login');
         }
-        $username = $request->username;
+        $email = $request->email;
         $password = $request->password;
         $remember = isset($request->remember) ? true : false;
 
-        if (Auth::attempt(['username' => $username, 'password' => $password], $remember)) {
-            return redirect()->intended('admin');//gives /admin in route
+        if (Auth::attempt(['email' => $email, 'password' => $password], $remember)) {
+
+            return redirect()->route('admin');//gives /admin in route
         }
         return redirect()->back()->with('error', 'Invalid username and password');
     }

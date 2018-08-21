@@ -1,0 +1,156 @@
+.navbar-brand {
+    padding: 15px 0;
+}
+
+.primary-search-form {
+    min-height: 450px;
+    background-position: center center;
+    background-attachment: fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+
+}
+
+.primary-search-form:before {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    /*background: rgba(255, 255, 255, 0.4);*/
+    content: ' ';
+}
+
+.primary-search-form .search-form {
+    position: absolute;
+    width: 100%;
+    bottom: -2px;
+}
+
+.primary-search-form .search-form form {
+    background: #ffffff;
+    padding: 30px 20px;
+    border-radius: 4px 4px 0 0;
+}
+
+.primary-search-form .search-form input,
+.primary-search-form .search-form label,
+.primary-search-form .search-form input::placeholder {
+    color: #3b3b3b;
+
+}
+
+.primary-search-form .search-form input,
+.primary-search-form .search-form label {
+    font-weight: 400;
+    box-shadow: none;
+}
+
+#fun-factor {
+    background: rgb(236, 236, 236);
+}
+
+/*-----------------------added new------------------------------------------*/
+
+
+
+#pagesearch {
+    color: #ffffff;
+}
+#pagesearch input[type=text] {
+    background-color: white;
+    color: #6897e2;
+
+}
+
+/*connect us icons*/
+
+#twitter .socialmedia i {
+    margin-right: 5px;
+}
+
+#twitter .twitter-feed i {
+    padding: 42px;
+    background: transparent!important;
+}
+
+.fa-1x i, i.fa-1x {
+    font-size: 45px;
+}
+
+/*no of seats*/
+.popover-markup .popover{
+    width:150%;
+}
+.popover-markup label{
+    padding:0px;
+}
+
+.xx{
+    width: 5px;
+}
+
+
+
+/* for register and login form*/
+#close{
+    font-size: 19px;
+}
+.loginx{
+    padding: 20px;
+}
+
+#login, #register{
+    background-color: #40d4e4;
+    color: #fff;
+}
+.loginx h3,.loginx span, .loginx .forget{
+    color: #40e4d4
+}
+.loginx .btn {
+    color:#fff;
+}
+
+
+@media only screen and (max-width: 600px) {
+    .primary-search-form .btnx {
+        margin-top: 30px;
+    }
+    .returnTic{
+        margin-top: 15px;
+    }
+}
+
+
+.searchh
+{
+    margin: 0 0 0 0;
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    background:#f0eded ;
+    padding: 10px;
+}
+.search_text
+{
+    padding: 8px;
+}
+.search_body
+{
+    padding: 15px;
+
+}
+
+input[type=checkbox]
+{
+    /* Double-sized Checkboxes */
+    -ms-transform: scale(0.8); /* IE */
+    -moz-transform: scale(0.8); /* FF */
+    -webkit-transform: scale(0.8); /* Safari and Chrome */
+    -o-transform: scale(0.8); /* Opera */
+
+
+}
+
+
+/*sign using facebook*/
+

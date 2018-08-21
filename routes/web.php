@@ -11,8 +11,28 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+//Route::get('/', function () {
+//    return view('welcome');
+//});
+
+
+
+Route::group(['namespace'=>'Frontend'],function (){
+    Route::any('/','SiteController@index')->name('home');
+    Route::any('/faq','SiteController@faq')->name('faq');
+    Route::any('/about','SiteController@about')->name('about');
+    Route::any('/contact','SiteController@about')->name('contact');
+    Route::any('/search','SiteController@search')->name('search');
+    Route::any('/search/filter','SiteController@searchFilter')->name('searchFilter');
+    Route::any('/registerUser','SiteController@registerUser')->name('registerUser');
+    Route::any('/loginUser','SiteController@loginUser')->name('loginUser');
+   Route::group(['middleware'=>'traveller'],function (){
+       Route::any('/profile','SiteController@profile')->name('profile');
+       Route::any('/editProfile','SiteController@editProfile')->name('editProfile');
+       Route::any('/updateProfile','SiteController@updateProfile')->name('updateProfile');
+       Route::any('/history','SiteController@history')->name('history');
+   });
+    Route::any('/profile/logout','SiteController@userLogout')->name('userLogout');
 });
 
 
@@ -21,41 +41,11 @@ Route::namespace('Backend')->group(function () {
     Route::any('/logout', 'UsersController@logout')->name('logout');
 });
 
-//Route::group(['namespace' => 'Backend','prefix'=>null], function () {
-//
-//
-//
-//    Route::any('/logout', 'UsersController@logout')->name('logout');
-//
-//});
-
-
-Route::group(['namespace'=>'Backend','prefix'=>'admin'],function (){
+Route::group(['namespace'=>'Backend','prefix'=>'admin','middleware'=>'admin'],function (){
 
     Route::get('/', function () {
         return view('backend.dashboard');
     })->name('admin');
-
-
-
-    Route::group(['prefix' => 'banners'], function () {
-
-        Route::any('/', 'BannersController@index')->name('banners');
-
-        Route::any('/create', 'BannersController@create')->name('createBanner');
-
-        Route::any('/store', 'BannersController@store')->name('storeBanner');
-
-        Route::any('/show/{id?}', 'BannersController@show')->name('showBanner');
-
-        Route::any('/edit/{id?}', 'BannersController@edit')->name('editBanner');
-
-        Route::any('/update', 'BannersController@update')->name('updateBanner');
-
-        Route::any('/delete', 'BannersController@destroy')->name('destroyBanner');
-
-
-    });
 
     Route::group(['prefix' => 'users'], function () {
 
@@ -72,6 +62,193 @@ Route::group(['namespace'=>'Backend','prefix'=>'admin'],function (){
         Route::any('/update', 'UsersController@update')->name('updateUser');
 
         Route::any('/delete', 'UsersController@destroy')->name('destroyUser');
+
+
+    });
+
+    Route::group(['prefix' => 'bustypes'], function () {
+
+        Route::any('/', 'BustypesController@index')->name('bustypes');
+
+        Route::any('/create', 'BustypesController@create')->name('createBustype');
+
+        Route::any('/store', 'BustypesController@store')->name('storeBustype');
+
+        Route::any('/show/{id?}', 'BustypesController@show')->name('showBustype');
+
+        Route::any('/edit/{id?}', 'BustypesController@edit')->name('editBustype');
+
+        Route::any('/update', 'BustypesController@update')->name('updateBustype');
+
+        Route::any('/delete', 'BustypesController@destroy')->name('destroyBustype');
+
+
+    });
+
+    Route::group(['prefix' => 'routes'], function () {
+
+        Route::any('/', 'RoutesController@index')->name('routes');
+
+        Route::any('/create', 'RoutesController@create')->name('createRoute');
+
+        Route::any('/store', 'RoutesController@store')->name('storeRoute');
+
+        Route::any('/show/{id?}', 'RoutesController@show')->name('showRoute');
+
+        Route::any('/edit/{id?}', 'RoutesController@edit')->name('editRoute');
+
+        Route::any('/update', 'RoutesController@update')->name('updateRoute');
+
+        Route::any('/delete', 'RoutesController@destroy')->name('destroyRoute');
+
+
+    });
+
+    Route::group(['prefix' => 'buses'], function () {
+
+        Route::any('/', 'BusesController@index')->name('buses');
+
+        Route::any('/create', 'BusesController@create')->name('createBus');
+
+        Route::any('/store', 'BusesController@store')->name('storeBus');
+
+        Route::any('/show/{id?}', 'BusesController@show')->name('showBus');
+
+        Route::any('/edit/{id?}', 'BusesController@edit')->name('editBus');
+
+        Route::any('/update', 'BusesController@update')->name('updateBus');
+
+        Route::any('/delete', 'BusesController@destroy')->name('destroyBus');
+
+
+    });
+
+    Route::group(['prefix' => 'schedules'], function () {
+
+        Route::any('/', 'SchedulesController@index')->name('schedules');
+
+        Route::any('/create', 'SchedulesController@create')->name('createSchedule');
+
+        Route::any('/store', 'SchedulesController@store')->name('storeSchedule');
+
+        Route::any('/show/{id?}', 'SchedulesController@show')->name('showSchedule');
+
+        Route::any('/edit/{id?}', 'SchedulesController@edit')->name('editSchedule');
+
+        Route::any('/update', 'SchedulesController@update')->name('updateSchedule');
+
+        Route::any('/delete', 'SchedulesController@destroy')->name('destroySchedule');
+
+    });
+
+    Route::group(['prefix' => 'bookings'], function () {
+
+        Route::any('/', 'BookingsController@index')->name('bookings');
+
+        Route::any('/create', 'BookingsController@create')->name('createBooking');
+
+        Route::any('/store', 'BookingsController@store')->name('storeBooking');
+
+        Route::any('/show/{id?}', 'BookingsController@show')->name('showBooking');
+
+        Route::any('/edit/{id?}', 'BookingsController@edit')->name('editBooking');
+
+        Route::any('/update', 'BookingsController@update')->name('updateBooking');
+
+        Route::any('/delete', 'BookingsController@destroy')->name('destroyBooking');
+
+
+    });
+
+    Route::group(['prefix' => 'travellers'], function () {
+
+        Route::any('/', 'TravellersController@index')->name('travellers');
+
+        Route::any('/create', 'TravellersController@create')->name('createTraveller');
+
+        Route::any('/store', 'TravellersController@store')->name('storeTraveller');
+
+        Route::any('/show/{id?}', 'TravellersController@show')->name('showTraveller');
+
+        Route::any('/edit/{id?}', 'TravellersController@edit')->name('editTraveller');
+
+        Route::any('/update', 'TravellersController@update')->name('updateTraveller');
+
+        Route::any('/delete', 'TravellersController@destroy')->name('destroyTraveller');
+
+    });
+
+    Route::group(['prefix' => 'guests'], function () {
+
+        Route::any('/', 'GuestsController@index')->name('guests');
+
+        Route::any('/create', 'GuestsController@create')->name('createGuest');
+
+        Route::any('/store', 'GuestsController@store')->name('storeGuest');
+
+        Route::any('/show/{id?}', 'GuestsController@show')->name('showGuest');
+
+        Route::any('/edit/{id?}', 'GuestsController@edit')->name('editGuest');
+
+        Route::any('/update', 'GuestsController@update')->name('updateGuest');
+
+        Route::any('/delete', 'GuestsController@destroy')->name('destroyGuest');
+
+    });
+
+    Route::group(['prefix' => 'vendors'], function () {
+
+        Route::any('/', 'VendorsController@index')->name('vendors');
+
+        Route::any('/create', 'VendorsController@create')->name('createVendor');
+
+        Route::any('/store', 'VendorsController@store')->name('storeVendor');
+
+        Route::any('/show/{id?}', 'VendorsController@show')->name('showVendor');
+
+        Route::any('/edit/{id?}', 'VendorsController@edit')->name('editVendor');
+
+        Route::any('/update', 'VendorsController@update')->name('updateVendor');
+
+        Route::any('/delete', 'VendorsController@destroy')->name('destroyVendor');
+
+
+    });
+
+    Route::group(['prefix' => 'admins'], function () {
+
+        Route::any('/', 'AdminsController@index')->name('admins');
+
+        Route::any('/create', 'AdminsController@create')->name('createAdmin');
+
+        Route::any('/store', 'AdminsController@store')->name('storeAdmin');
+
+        Route::any('/show/{id?}', 'AdminsController@show')->name('showAdmin');
+
+        Route::any('/edit/{id?}', 'AdminsController@edit')->name('editAdmin');
+
+        Route::any('/update', 'AdminsController@update')->name('updateAdmin');
+
+        Route::any('/delete', 'AdminsController@destroy')->name('destroyAdmin');
+
+
+    });
+
+    Route::group(['prefix' => 'banners'], function () {
+
+        Route::any('/', 'BannersController@index')->name('banners');
+
+        Route::any('/create', 'BannersController@create')->name('createBanner');
+
+        Route::any('/store', 'BannersController@store')->name('storeBanner');
+
+        Route::any('/show/{id?}', 'BannersController@show')->name('showBanner');
+
+        Route::any('/edit/{id?}', 'BannersController@edit')->name('editBanner');
+
+        Route::any('/update', 'BannersController@update')->name('updateBanner');
+
+        Route::any('/delete', 'BannersController@destroy')->name('destroyBanner');
 
 
     });
@@ -209,24 +386,6 @@ Route::group(['namespace'=>'Backend','prefix'=>'admin'],function (){
 
     });
 
-    Route::group(['prefix' => 'bustypes'], function () {
-
-        Route::any('/', 'BustypesController@index')->name('bustypes');
-
-        Route::any('/create', 'BustypesController@create')->name('createBustype');
-
-        Route::any('/store', 'BustypesController@store')->name('storeBustype');
-
-        Route::any('/show/{id?}', 'BustypesController@show')->name('showBustype');
-
-        Route::any('/edit/{id?}', 'BustypesController@edit')->name('editBustype');
-
-        Route::any('/update', 'BustypesController@update')->name('updateBustype');
-
-        Route::any('/delete', 'BustypesController@destroy')->name('destroyBustype');
-
-
-    });
 });
 
 

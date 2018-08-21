@@ -11,7 +11,7 @@ class FeedbacksTableSeeder extends Seeder
      */
     public function run()
     {
-        \Illuminate\Support\Facades\DB::table('feedbacks')->insert([
+        DB::table('feedbacks')->insert([
             [ 'fname'=>'admin','lname'=>'admin','message'=>'This is all of it ','email'=>'bhattasuraj76@gmail.com','phone'=>'131313133']
         ]);
     }

@@ -37,13 +37,12 @@
                         </div>
                         <div class="col-md-9">
                             <input type="hidden" name="id" value="{{$user->users_id}}">
-                            <div class="col-md-3"><strong>Name : *</strong></div>
-                            <div class="col-md-9">
-                                <input type="text" class="form-control" name="name" placeholder="Name" value="{{$user->name}}" required>
-                                <small class="text text-danger">{{$errors->first('name')}}</small>
-
-                            </div>
-                            <div class="col-md-12">&nbsp;</div>
+                            {{--<div class="col-md-3"><strong>Name : *</strong></div>--}}
+                            {{--<div class="col-md-9">--}}
+                                {{--<input type="text" class="form-control" name="name" placeholder="Name" value="{{$user->name}}" required>--}}
+                                {{--<small class="text text-danger">{{$errors->first('name')}}</small>--}}
+                            {{--</div>--}}
+                            {{--<div class="col-md-12">&nbsp;</div>--}}
                             <div class="col-md-3"><strong>Email : *</strong></div>
                             <div class="col-md-9">
                                 <input type="text" class="form-control" name="email" value="{{$user->email}}" placeholder="Email" required>
@@ -51,16 +50,17 @@
 
                             </div>
                             <div class="col-md-12">&nbsp;&nbsp;</div>
-                            <div class="col-md-3"><strong>Username : *</strong></div>
-                            <div class="col-md-9">
-                                <input type="text" class="form-control" name="username" value="{{$user->username}}" placeholder="Username">
-                                <small class="text text-danger">{{$errors->first('username')}}</small>
-                            </div>
-                            <div class="col-md-12">&nbsp;</div>
+                            {{--<div class="col-md-3"><strong>Username : *</strong></div>--}}
+                            {{--<div class="col-md-9">--}}
+                                {{--<input type="text" class="form-control" name="username" value="{{$user->username}}" placeholder="Username">--}}
+                                {{--<small class="text text-danger">{{$errors->first('username')}}</small>--}}
+                            {{--</div>--}}
+                            {{--<div class="col-md-12">&nbsp;</div>--}}
                             <div class="col-md-3"><strong>User Type:</strong></div>
                             <div class="col-md-9">
                                 <input type="radio" name="user_type" value="admin" @php if($user->user_type=='admin') echo 'checked'; @endphp> Admin&ensp;
-                                <input type="radio" name="user_type" value="user" @php if($user->user_type=='user') echo 'checked'; @endphp> User
+                                <input type="radio" name="user_type" value="user" @php if($user->user_type=='traveller') echo 'checked'; @endphp> Traveller
+                                <input type="radio" name="user_type" value="user" @php if($user->user_type=='vendor') echo 'checked'; @endphp> Vendor
                                 <small class="text text-danger">{{$errors->first('user_type')}}</small>
 
                             </div>

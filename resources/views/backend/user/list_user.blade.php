@@ -42,9 +42,9 @@
                     <thead>
                     <tr>
                         <th>S.No.</th>
-                        <th>Name</th>
+                        {{--<th>Name</th>--}}
                         <th>Email</th>
-                        <th>Username</th>
+                        {{--<th>Username</th>--}}
                         <th>User Type</th>
                         <th>Action</th>
                     </tr>
@@ -53,9 +53,9 @@
                     @foreach($users as $count => $key)
                         <tr>
                             <td>{{++$count}}</td>
-                            <td>{{$key->name}}</td>
+                            {{--<td>{{$key->name}}</td>--}}
                             <td>{{$key->email}}</td>
-                            <td>{{$key->username}}</td>
+                            {{--<td>{{$key->username}}</td>--}}
                             <td>{{$key->user_type}}</td>
                             <td>
                                 <table>

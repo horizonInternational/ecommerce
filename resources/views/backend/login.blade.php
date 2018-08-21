@@ -54,8 +54,8 @@ MAIN CONTENT
 
             <div class="login-wrap">
                 <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                    <input id="email" type="text" class="form-control" name="username" value="{{ old('email') }}"
-                           placeholder="Username" required autofocus>
+                    <input id="email" type="text" class="form-control" name="email" value="{{ old('email') }}"
+                           placeholder="Email" required autofocus>
                     @if ($errors->has('email'))
                         <span class="help-block">
                                         <strong>{{ $errors->first('email') }}</strong>
